@@ -2,14 +2,14 @@ var
 targetLabel = 'C',
 state = 'collection',
 setup = () => [
-  createCanvas(400, 400),
+  createCanvas(600, 600),
   model = ml5.neuralNetwork({
     inputs: ['x', 'y'],
     outputs: ['label'],
     task: 'classification',
     debug: true
   }),
-  background(255)
+  background(225)
 ],
 
 keyPressed = () => [
@@ -18,8 +18,8 @@ keyPressed = () => [
     model.normalizeData(),
     model.train(
       {epochs: 200}, // options
-      (epoch, loss) => console.log(epoch),
-      () => state = 'prediction'
+      (epoch, loss) => console.log(epoch), // while training
+      () => state = 'prediction' // when finished
     )
   ] : [targetLabel = key.toUpperCase()]
 ],
