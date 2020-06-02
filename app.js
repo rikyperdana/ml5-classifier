@@ -21,9 +21,8 @@ keyPressed = () => [
       (epoch, loss) => console.log(epoch),
       () => state = 'prediction'
     )
-  ]
-  : [targetLabel = key.toUpperCase()]
-]
+  ] : [targetLabel = key.toUpperCase()]
+],
 
 mousePressed = () =>
   state === 'collection' ? [
@@ -36,8 +35,7 @@ mousePressed = () =>
     fill(0), noStroke(),
     textAlign(CENTER, CENTER),
     text(targetLabel, mouseX, mouseY)
-  ] : [
-    model.classify(
+  ] : model.classify(
     {x: mouseX, y: mouseY},
     (error, results) =>
       error ? console.log(error) : [
@@ -47,6 +45,4 @@ mousePressed = () =>
         textAlign(CENTER, CENTER),
         text(results[0].label, mouseX, mouseY)
       ]
-    )
-  ]
-
+  )
